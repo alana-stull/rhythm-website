@@ -7,6 +7,48 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-Light-BF66457a50df5a0.otf') format('opentype');
+    font-weight: 300; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-LightItalic-BF66457a5088153.otf') format('opentype');
+    font-weight: 300; font-style: italic;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-Regular-BF66457a508e31a.otf') format('opentype');
+    font-weight: 400; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-RegularItalic-BF66457a5091d70.otf') format('opentype');
+    font-weight: 400; font-style: italic;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-Medium-BF66457a509b4ec.otf') format('opentype');
+    font-weight: 500; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-MediumItalic-BF66457a50b4260.otf') format('opentype');
+    font-weight: 500; font-style: italic;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-Semibold-BF66457a509040b.otf') format('opentype');
+    font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-SemiboldItalic-BF66457a510c462.otf') format('opentype');
+    font-weight: 600; font-style: italic;
+  }
+</style>
+<style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -40,7 +82,7 @@
     border-bottom: 1px solid rgba(193, 126, 58, 0.12);
   }
   .nav-logo {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 1.25rem;
     color: var(--ink);
     letter-spacing: 0.02em;
@@ -90,7 +132,7 @@
     animation: fadeUp 0.8s 0.2s ease forwards;
   }
   .hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: clamp(2.8rem, 6vw, 5.5rem);
     font-weight: 400;
     line-height: 1.08;
@@ -166,7 +208,7 @@
     margin-bottom: 12px;
   }
   .score-number {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 5rem;
     font-weight: 400;
     color: var(--ink);
@@ -225,7 +267,7 @@
     margin-bottom: 20px;
   }
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 400;
     line-height: 1.15;
@@ -301,7 +343,7 @@
   }
   .step:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(30,27,24,0.07); }
   .step-num {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 3rem;
     font-weight: 400;
     color: var(--accent-light);
@@ -309,7 +351,7 @@
     margin-bottom: 20px;
   }
   .step h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 1.15rem;
     font-weight: 500;
     margin-bottom: 12px;
@@ -408,7 +450,7 @@
     padding: 120px 48px;
   }
   .after-quote {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: clamp(1.4rem, 2.5vw, 2rem);
     font-weight: 400;
     font-style: italic;
@@ -452,7 +494,7 @@
     margin-bottom: 20px;
   }
   .feature h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 1.05rem;
     font-weight: 500;
     margin-bottom: 10px;
@@ -495,7 +537,7 @@
   }
   .plan.pro .plan-name { color: var(--accent-light); }
   .plan-price {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 2.5rem;
     font-weight: 400;
     color: var(--ink);
@@ -529,7 +571,7 @@
     font-size: 0.8rem;
   }
   .footer-brand {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Tiempos Headline', serif;
     font-size: 1rem;
     color: var(--warm);
   }
@@ -546,6 +588,96 @@
     to { opacity: 1; }
   }
 
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(30,27,24,0.6);
+    backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 52px 48px;
+    width: 100%; max-width: 460px;
+    box-shadow: 0 40px 120px rgba(30,27,24,0.18);
+    position: relative;
+    animation: fadeUp 0.35s ease forwards;
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.4rem; color: var(--mid);
+    line-height: 1; padding: 4px;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--ink); }
+  .modal-eyebrow {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .modal h2 {
+    font-family: 'Tiempos Headline', serif;
+    font-size: 1.8rem; font-weight: 400;
+    line-height: 1.2; margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .modal h2 em { font-style: italic; color: var(--accent); }
+  .modal-sub {
+    font-size: 0.88rem; color: var(--mid);
+    line-height: 1.7; margin-bottom: 32px;
+  }
+  .modal-form { display: flex; flex-direction: column; gap: 12px; }
+  .modal-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1.5px solid var(--warm-mid);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--ink);
+    background: var(--warm);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .modal-input:focus { border-color: var(--accent); }
+  .modal-input::placeholder { color: var(--mid); opacity: 0.6; }
+  .modal-submit {
+    background: var(--ink); color: var(--warm);
+    padding: 14px 32px; border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.06em; border: none;
+    cursor: pointer; transition: background 0.25s, transform 0.15s;
+    margin-top: 4px;
+  }
+  .modal-submit:hover { background: var(--accent); transform: translateY(-1px); }
+  .modal-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .modal-success {
+    display: none; text-align: center; padding: 20px 0 8px;
+  }
+  .modal-success-icon {
+    font-size: 2.5rem; margin-bottom: 16px;
+  }
+  .modal-success h3 {
+    font-family: 'Tiempos Headline', serif;
+    font-size: 1.4rem; font-weight: 400;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .modal-success p { font-size: 0.88rem; color: var(--mid); line-height: 1.7; }
+  .modal-error {
+    font-size: 0.8rem; color: #c0392b;
+    margin-top: -4px; display: none;
+  }
+  @media (max-width: 768px) {
+    .modal { padding: 40px 28px; }
+  }
+
   /* SCROLL REVEAL */
   .reveal {
     opacity: 0;
@@ -553,6 +685,70 @@
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .reveal.visible { opacity: 1; transform: none; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 16px 24px;
+    }
+    .nav-links a:not(.nav-cta) { display: none; }
+
+    .hero {
+      padding: 100px 24px 60px;
+      min-height: auto;
+    }
+    .hero-score {
+      position: static;
+      transform: none;
+      margin-top: 48px;
+      animation: fadeUp 0.9s 0.8s ease forwards;
+    }
+    .score-card {
+      width: 100%;
+      padding: 36px 28px;
+    }
+    .score-number { font-size: 4rem; }
+
+    section { padding: 64px 24px; }
+
+    .before-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .transform-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+
+    .after-section { padding: 80px 24px; }
+
+    footer {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    footer > div:last-child { text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -563,7 +759,7 @@
     <a href="#how">How it works</a>
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
-    <a href="#" class="nav-cta">Get early access</a>
+    <a href="#" class="nav-cta" onclick="openModal(event)">Get early access</a>
   </div>
 </nav>
 
@@ -574,7 +770,7 @@
   <h1>Make every day<br><em>manageable,</em><br>not perfect.</h1>
   <p class="hero-sub">You can't control your schedule. You can't always control how you feel. But you can stop letting them work against each other.</p>
   <div class="hero-actions">
-    <a href="#" class="btn-primary">Get early access</a>
+    <a href="#" class="btn-primary" onclick="openModal(event)">Get early access</a>
     <a href="#how" class="btn-ghost">See how it works →</a>
   </div>
   <div class="hero-score">
@@ -780,6 +976,28 @@
   </div>
 </section>
 
+<!-- EARLY ACCESS MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div id="modal-form-view">
+      <div class="modal-eyebrow">Early Access</div>
+      <h2>Be first to <em>find your rhythm.</em></h2>
+      <p class="modal-sub">Drop your email and we'll send you the TestFlight link as soon as it's ready. No noise, just the link.</p>
+      <form class="modal-form" onsubmit="submitEmail(event)">
+        <input class="modal-input" type="email" id="email-input" placeholder="your@email.com" required autocomplete="email" />
+        <p class="modal-error" id="modal-error"></p>
+        <button class="modal-submit" type="submit" id="modal-submit">Get early access</button>
+      </form>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="modal-success-icon">◐</div>
+      <h3>You're on the list.</h3>
+      <p>We'll send your TestFlight link to that address as soon as it's ready. Thanks for being here early.</p>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div>
@@ -793,6 +1011,72 @@
 </footer>
 
 <script>
+  // TODO: fill these in from your Supabase project → Settings → API
+  const SUPABASE_URL = 'https://pmsbperkkvifnowdrzgn.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtc2JwZXJra3ZpZm5vd2RyemduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjcxOTUsImV4cCI6MjA5MjEwMzE5NX0.3d_JgZXS1qlQpjW35fQ9pH1ar7nTCQj75hb7tFLreqA';
+  const TABLE_NAME = 'early_access'; // create this table in Supabase with an "email" column
+
+  function openModal(e) {
+    e.preventDefault();
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('email-input').focus(), 100);
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  async function submitEmail(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value.trim();
+    const btn = document.getElementById('modal-submit');
+    const errEl = document.getElementById('modal-error');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    errEl.style.display = 'none';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 409 || (data.code === '23505')) {
+          // duplicate email — treat as success
+        } else {
+          throw new Error(data.message || 'Something went wrong.');
+        }
+      }
+
+      document.getElementById('modal-form-view').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+    } catch (err) {
+      errEl.textContent = err.message || 'Something went wrong. Try again.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Get early access';
+    }
+  }
+
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
