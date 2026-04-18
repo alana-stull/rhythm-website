@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rhythm — Make every day manageable, not perfect.</title>
+<title>Rhythm, Make every day manageable, not perfect.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -153,9 +153,9 @@
   .score-card {
     background: var(--white);
     border-radius: 24px;
-    padding: 36px 40px;
+    padding: 42px 44px;
     box-shadow: 0 24px 80px rgba(30,27,24,0.08), 0 4px 16px rgba(30,27,24,0.04);
-    width: 240px;
+    width: 280px;
     text-align: center;
   }
   .score-label {
@@ -342,11 +342,15 @@
     color: rgba(242,240,235,0.7);
     line-height: 1.85;
   }
+  .transform-text p:first-child {
+    margin-top: 0;
+  }
   .timeline-card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 20px;
     padding: 28px;
+    margin-top: -12px;
   }
   .timeline-header {
     font-size: 0.7rem;
@@ -457,12 +461,19 @@
   .feature p { font-size: 0.86rem; color: var(--mid); line-height: 1.7; }
 
   /* PRICING */
-  .pricing-section { background: var(--warm); }
+  .pricing-section {
+    background: var(--warm);
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 1fr);
+    align-items: start;
+    gap: 48px;
+  }
+  .pricing-copy { max-width: 520px; }
   .pricing-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    margin-top: 60px;
+    margin-top: 0;
     max-width: 720px;
   }
   .plan {
@@ -584,7 +595,7 @@
   <div class="before-text">
     <div class="section-label">The problem</div>
     <h2 class="section-title">You're keeping up.<br><em>But only with the parts<br>that have deadlines.</em></h2>
-    <p>You wake up and check Oura. 62%. You note it, set the phone down, and start moving. Somewhere in the shuffle —</p>
+    <p>You wake up and check Oura. 62%. You note it, set the phone down, and start moving. Somewhere in the shuffle,</p>
     <p><em>I'll go to the gym this weekend.<br>I'll call my mom tomorrow.<br>I'll figure out food when I'm hungry.</em></p>
     <p>These aren't decisions. They're deferrals.</p>
   </div>
@@ -620,17 +631,17 @@
     <div class="step reveal">
       <div class="step-num">01</div>
       <h3>Connect your signals</h3>
-      <p>Sync your Oura Ring recovery data and Google Calendar. Rhythm reads your readiness, your load, and your actual open windows — together.</p>
+      <p>Sync your Oura Ring recovery data and Google Calendar. Rhythm reads your readiness, your load, and your actual open windows, together.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">02</div>
       <h3>Name what matters</h3>
-      <p>Add your floating tasks — the things without deadlines that keep getting pushed. The gym. The call. The break. Rhythm treats them as equal to your calendar.</p>
+      <p>Add your floating tasks, the things without deadlines that keep getting pushed. The gym. The call. The break. Rhythm treats them as equal to your calendar.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
       <h3>Let the day align</h3>
-      <p>Rhythm surfaces the gaps, matches them to your readiness, and shows you what today actually has room for. Across your whole life — not just work.</p>
+      <p>Rhythm surfaces the gaps, matches them to your readiness, and shows you what today actually has room for. Across your whole life, not just work.</p>
     </div>
   </div>
 </section>
@@ -641,12 +652,12 @@
   <h2 class="section-title reveal">The 62% day<br><em>didn't derail you.</em><br>It shaped how<br>you moved through it.</h2>
   <div class="transform-grid">
     <div class="transform-text reveal">
-      <p>Rhythm sees the 62% and your calendar load. It asks what your priority is today — not what's scheduled, but what actually matters to you.</p>
+      <p>Rhythm sees the 62% and your calendar load. It asks what your priority is today, not what's scheduled, but what actually matters to you.</p>
       <p>It finds the 90 minutes between your sync and class and instead of leaving them empty, it reflects back: here's what you have, here's what you said matters, here's a moment to breathe.</p>
-      <p>The gym doesn't default to the weekend. The call doesn't default to tomorrow. Rhythm helps you see which things can wait — and gives you permission to let them.</p>
+      <p>The gym doesn't default to the weekend. The call doesn't default to tomorrow. Rhythm helps you see which things can wait, and gives you permission to let them.</p>
     </div>
     <div class="timeline-card reveal">
-      <div class="timeline-header">Today — Apr 18 · Readiness 62%</div>
+      <div class="timeline-header">Today, Apr 18 · Readiness 62%</div>
       <div class="timeline-item">
         <div class="timeline-time">9am</div>
         <div class="timeline-event">
@@ -657,7 +668,7 @@
       <div class="timeline-item">
         <div class="timeline-time">10:30</div>
         <div class="timeline-event">
-          <div class="timeline-event-name">Open — 90 min</div>
+          <div class="timeline-event-name">Open, 90 min</div>
           <span class="timeline-event-tag tag-gap">↳ Rhythm found this</span>
         </div>
       </div>
@@ -678,12 +689,12 @@
       <div class="timeline-item">
         <div class="timeline-time">5pm</div>
         <div class="timeline-event">
-          <div class="timeline-event-name">Open — protect it</div>
+          <div class="timeline-event-name">Open, protect it</div>
           <span class="timeline-event-tag tag-personal">Personal</span>
         </div>
       </div>
       <div class="rhythm-insight">
-        <strong>Rhythm suggests:</strong> Use your 10:30 block for the gym — you've been deferring it 4 days. Moderate readiness, light afternoon load. Today is the day.
+        <strong>Rhythm suggests:</strong> Use your 10:30 block for the gym, you've been deferring it 4 days. Moderate readiness, light afternoon load. Today is the day.
       </div>
     </div>
   </div>
@@ -694,7 +705,7 @@
   <blockquote class="after-quote">
     "You're not just getting through days. You're starting to understand how you move through them."
   </blockquote>
-  <p class="after-sub">From the strained Monday afternoons to the balanced streaks — you finally understand what it feels like when the numbers align.</p>
+  <p class="after-sub">From the strained Monday afternoons to the balanced streaks, you finally understand what it feels like when the numbers align.</p>
 </section>
 
 <!-- FEATURES -->
@@ -705,40 +716,42 @@
     <div class="feature">
       <div class="feature-icon">◐</div>
       <h3>Recovery-aware scheduling</h3>
-      <p>Your Oura readiness score isn't just a number to log — it's a lens for your whole day. Rhythm reads it alongside your calendar load and adjusts accordingly.</p>
+      <p>Your Oura readiness score isn't just a number to log, it's a lens for your whole day. Rhythm reads it alongside your calendar load and adjusts accordingly.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">◻</div>
       <h3>Calendar timeline view</h3>
-      <p>See your events, open gaps, and readiness all in one place. The transformation moment made visible — your life and your body, sitting together.</p>
+      <p>See your events, open gaps, and readiness all in one place. The transformation moment made visible, your life and your body sitting together.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">○</div>
-      <h3>Ambient lamp</h3>
-      <p>A warm pulsing light signals your state before you even open your phone. High readiness breathes slowly. Rest days dim to almost still. No colors, no alerts — just a signal.</p>
+      <h3>Daily readiness cue</h3>
+      <p>A warm pulsing signal surfaces your state before you open your phone. High readiness breathes slowly. Rest days dim to almost still. No colors, no alerts, just a signal.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">◈</div>
       <h3>Floating task alignment</h3>
-      <p>The things without deadlines live here — the gym, the call, the real meal. Rhythm surfaces them into real gaps based on your readiness and energy.</p>
+      <p>The things without deadlines live here, the gym, the call, the real meal. Rhythm surfaces them into real gaps based on your readiness and energy.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">◇</div>
       <h3>Daily alignment insight</h3>
-      <p>A short, personal message read aloud each morning. Not a productivity tip. An honest look at what today has room for — and permission to use it well.</p>
+      <p>A short, personal message read aloud each morning. Not a productivity tip. An honest look at what today has room for, and permission to use it well.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">◑</div>
       <h3>Weekly pattern view</h3>
-      <p>See your strained Monday afternoons and your balanced streaks. Understand how you move through weeks, not just days — and start shaping them intentionally.</p>
+      <p>See your strained Monday afternoons and your balanced streaks. Understand how you move through weeks, not just days, and start shaping them intentionally.</p>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
-  <div class="section-label reveal">Pricing</div>
-  <h2 class="section-title reveal">Simple, honest,<br><em>built to last.</em></h2>
+  <div class="pricing-copy reveal">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple, honest,<br><em>built to last.</em></h2>
+  </div>
   <div class="pricing-grid reveal">
     <div class="plan">
       <div class="plan-name">Free</div>
@@ -747,21 +760,21 @@
       <ul class="plan-features">
         <li><span class="check">✓</span> 7-day readiness history</li>
         <li><span class="check">✓</span> Calendar sync</li>
-        <li><span class="check">✓</span> Daily alignment insight</li>
-        <li><span class="check">✓</span> Floating task list</li>
+        <li><span class="check">✓</span> 1 AI insight per day</li>
         <li><span class="check">✓</span> Basic timeline view</li>
+        <li><span class="check">✓</span> Floating task list</li>
       </ul>
     </div>
     <div class="plan pro">
       <div class="plan-name">Pro</div>
       <div class="plan-price">$8</div>
-      <div class="plan-cadence">per month · or $60/year</div>
+      <div class="plan-cadence">per month · or $75/year</div>
       <ul class="plan-features">
         <li><span class="check">✓</span> Full readiness history</li>
         <li><span class="check">✓</span> Unlimited AI insights</li>
         <li><span class="check">✓</span> Smart scheduling nudges</li>
         <li><span class="check">✓</span> Weekly pattern reports</li>
-        <li><span class="check">✓</span> Ambient lamp integration</li>
+        <li><span class="check">✓</span> Advanced timeline view</li>
       </ul>
     </div>
   </div>
