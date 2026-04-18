@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhythm — Make every day manageable, not perfect.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --warm: #F2F0EB;
+    --warm-mid: #E8E4DC;
+    --ink: #1E1B18;
+    --mid: #6B6259;
+    --accent: #C17E3A;
+    --accent-light: #E8C99A;
+    --white: #FDFCFA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(242, 240, 235, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(193, 126, 58, 0.12);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--ink) !important;
+    color: var(--warm) !important;
+    padding: 9px 22px;
+    border-radius: 40px;
+    letter-spacing: 0.08em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(193,126,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 800px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s ease forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    margin-top: 32px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--mid);
+    max-width: 520px;
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s ease forwards;
+  }
+  .hero-actions {
+    margin-top: 48px;
+    display: flex; gap: 16px; align-items: center;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s ease forwards;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--warm);
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--mid);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    padding-bottom: 2px;
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+  .hero-score {
+    position: absolute; right: 80px; top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: fadeIn 1.2s 0.8s ease forwards;
+  }
+  .score-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 36px 40px;
+    box-shadow: 0 24px 80px rgba(30,27,24,0.08), 0 4px 16px rgba(30,27,24,0.04);
+    width: 240px;
+    text-align: center;
+  }
+  .score-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 12px;
+  }
+  .score-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .score-unit { font-size: 1.2rem; color: var(--mid); }
+  .score-bar {
+    margin: 20px 0 8px;
+    height: 4px;
+    background: var(--warm-mid);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 100%;
+    width: 62%;
+    background: linear-gradient(90deg, var(--accent-light), var(--accent));
+    border-radius: 4px;
+    animation: fillBar 1.5s 1s ease forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  @keyframes fillBar { to { transform: scaleX(1); } }
+  .score-insight {
+    font-size: 0.78rem;
+    color: var(--mid);
+    line-height: 1.5;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--warm-mid);
+    text-align: left;
+  }
+  .score-insight strong { color: var(--ink); font-weight: 500; }
+  .lamp-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    display: inline-block;
+    margin-right: 6px;
+    box-shadow: 0 0 8px rgba(193,126,58,0.4);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+
+  /* SECTION BASE */
+  section { padding: 100px 48px; }
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.15;
+    max-width: 640px;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* BEFORE SECTION */
+  .before-section {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .before-text p {
+    margin-top: 28px;
+    font-size: 1rem;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+  .before-text p + p { margin-top: 16px; }
+  .deferrals {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .deferral-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--warm);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    color: var(--mid);
+    position: relative;
+    overflow: hidden;
+  }
+  .deferral-item::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--warm-mid);
+  }
+  .deferral-item.crossed { text-decoration: line-through; opacity: 0.5; }
+  .deferral-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(193,126,58,0.1);
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* HOW IT WORKS */
+  .how-section { background: var(--warm); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+  }
+  .step {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 32px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .step:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(30,27,24,0.07); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--accent-light);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .step p {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.75;
+  }
+
+  /* TRANSFORMATION */
+  .transform-section {
+    background: var(--ink);
+    color: var(--warm);
+  }
+  .transform-section .section-label { color: var(--accent-light); }
+  .transform-section .section-title { color: var(--warm); }
+  .transform-section .section-title em { color: var(--accent-light); }
+  .transform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+    align-items: start;
+  }
+  .transform-text p {
+    margin-top: 24px;
+    font-size: 1rem;
+    color: rgba(242,240,235,0.7);
+    line-height: 1.85;
+  }
+  .timeline-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 28px;
+  }
+  .timeline-header {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 20px;
+  }
+  .timeline-item {
+    display: flex; gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-time {
+    font-size: 0.75rem;
+    color: rgba(242,240,235,0.4);
+    min-width: 48px;
+    padding-top: 2px;
+  }
+  .timeline-event { flex: 1; }
+  .timeline-event-name {
+    font-size: 0.85rem;
+    color: var(--warm);
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .timeline-event-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  .tag-work { background: rgba(193,126,58,0.2); color: var(--accent-light); }
+  .tag-gap { background: rgba(100,180,120,0.2); color: #8ed4a0; }
+  .tag-personal { background: rgba(120,140,200,0.2); color: #a4b4e8; }
+  .tag-rest { background: rgba(200,150,100,0.15); color: #e8c99a; }
+  .rhythm-insight {
+    margin-top: 16px;
+    background: rgba(193,126,58,0.12);
+    border: 1px solid rgba(193,126,58,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    color: var(--accent-light);
+    line-height: 1.6;
+  }
+  .rhythm-insight strong { font-weight: 500; }
+
+  /* AFTER QUOTE */
+  .after-section {
+    background: var(--warm-mid);
+    text-align: center;
+    padding: 120px 48px;
+  }
+  .after-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.55;
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .after-sub {
+    margin-top: 32px;
+    font-size: 0.9rem;
+    color: var(--mid);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* FEATURES */
+  .features-section { background: var(--white); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--warm-mid);
+  }
+  .feature {
+    padding: 40px;
+    background: var(--white);
+    transition: background 0.2s;
+  }
+  .feature:hover { background: var(--warm); }
+  .feature-icon {
+    width: 40px; height: 40px;
+    background: rgba(193,126,58,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  .feature h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .feature p { font-size: 0.86rem; color: var(--mid); line-height: 1.7; }
+
+  /* PRICING */
+  .pricing-section { background: var(--warm); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+    max-width: 720px;
+  }
+  .plan {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 32px;
+    border: 1px solid var(--warm-mid);
+  }
+  .plan.pro {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .plan-name {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 12px;
+  }
+  .plan.pro .plan-name { color: var(--accent-light); }
+  .plan-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .plan.pro .plan-price { color: var(--warm); }
+  .plan-cadence { font-size: 0.8rem; color: var(--mid); margin-bottom: 28px; }
+  .plan.pro .plan-cadence { color: rgba(242,240,235,0.5); }
+  .plan-features { list-style: none; }
+  .plan-features li {
+    font-size: 0.84rem;
+    color: var(--mid);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--warm-mid);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .plan.pro .plan-features li { color: rgba(242,240,235,0.75); border-color: rgba(255,255,255,0.08); }
+  .plan-features li:last-child { border-bottom: none; }
+  .check { color: var(--accent); font-size: 0.9rem; }
+  .plan.pro .check { color: var(--accent-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(242,240,235,0.5);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--warm);
+  }
+  footer a { color: rgba(242,240,235,0.4); text-decoration: none; }
+  footer a:hover { color: var(--accent-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rhythm</div>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#" class="nav-cta">Get early access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-eyebrow">Introducing Rhythm</div>
+  <h1>Make every day<br><em>manageable,</em><br>not perfect.</h1>
+  <p class="hero-sub">You can't control your schedule. You can't always control how you feel. But you can stop letting them work against each other.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">Get early access</a>
+    <a href="#how" class="btn-ghost">See how it works →</a>
+  </div>
+  <div class="hero-score">
+    <div class="score-card">
+      <div class="score-label">Today's Readiness</div>
+      <div class="score-number">62<span class="score-unit">%</span></div>
+      <div class="score-bar"><div class="score-fill"></div></div>
+      <div class="score-insight">
+        <span class="lamp-dot"></span>
+        <strong>Moderate day.</strong> You have a 90-min gap at 2pm. The gym. The call you've been putting off. One thing that doesn't have a deadline.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE -->
+<section class="before-section reveal">
+  <div class="before-text">
+    <div class="section-label">The problem</div>
+    <h2 class="section-title">You're keeping up.<br><em>But only with the parts<br>that have deadlines.</em></h2>
+    <p>You wake up and check Oura. 62%. You note it, set the phone down, and start moving. Somewhere in the shuffle —</p>
+    <p><em>I'll go to the gym this weekend.<br>I'll call my mom tomorrow.<br>I'll figure out food when I'm hungry.</em></p>
+    <p>These aren't decisions. They're deferrals.</p>
+  </div>
+  <div class="deferrals">
+    <div class="deferral-item crossed">
+      Go to the gym
+      <span class="deferral-tag">pushed again</span>
+    </div>
+    <div class="deferral-item crossed">
+      Call mom
+      <span class="deferral-tag">pushed again</span>
+    </div>
+    <div class="deferral-item crossed">
+      Cook a real meal
+      <span class="deferral-tag">pushed again</span>
+    </div>
+    <div class="deferral-item crossed">
+      Take a real break
+      <span class="deferral-tag">pushed again</span>
+    </div>
+    <div class="deferral-item" style="border-left-color: var(--accent); background: rgba(193,126,58,0.05);">
+      Group sync at 10am
+      <span class="deferral-tag" style="background: rgba(30,27,24,0.08); color: var(--ink);">on calendar ✓</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-label reveal">How it works</div>
+  <h2 class="section-title reveal">Your whole life.<br><em>Not just your schedule.</em></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3>Connect your signals</h3>
+      <p>Sync your Oura Ring recovery data and Google Calendar. Rhythm reads your readiness, your load, and your actual open windows — together.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3>Name what matters</h3>
+      <p>Add your floating tasks — the things without deadlines that keep getting pushed. The gym. The call. The break. Rhythm treats them as equal to your calendar.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3>Let the day align</h3>
+      <p>Rhythm surfaces the gaps, matches them to your readiness, and shows you what today actually has room for. Across your whole life — not just work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATION -->
+<section class="transform-section" id="features">
+  <div class="section-label reveal">The transformation</div>
+  <h2 class="section-title reveal">The 62% day<br><em>didn't derail you.</em><br>It shaped how<br>you moved through it.</h2>
+  <div class="transform-grid">
+    <div class="transform-text reveal">
+      <p>Rhythm sees the 62% and your calendar load. It asks what your priority is today — not what's scheduled, but what actually matters to you.</p>
+      <p>It finds the 90 minutes between your sync and class and instead of leaving them empty, it reflects back: here's what you have, here's what you said matters, here's a moment to breathe.</p>
+      <p>The gym doesn't default to the weekend. The call doesn't default to tomorrow. Rhythm helps you see which things can wait — and gives you permission to let them.</p>
+    </div>
+    <div class="timeline-card reveal">
+      <div class="timeline-header">Today — Apr 18 · Readiness 62%</div>
+      <div class="timeline-item">
+        <div class="timeline-time">9am</div>
+        <div class="timeline-event">
+          <div class="timeline-event-name">Group sync</div>
+          <span class="timeline-event-tag tag-work">Work</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">10:30</div>
+        <div class="timeline-event">
+          <div class="timeline-event-name">Open — 90 min</div>
+          <span class="timeline-event-tag tag-gap">↳ Rhythm found this</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">1pm</div>
+        <div class="timeline-event">
+          <div class="timeline-event-name">Class</div>
+          <span class="timeline-event-tag tag-work">Work</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">3pm</div>
+        <div class="timeline-event">
+          <div class="timeline-event-name">Meeting</div>
+          <span class="timeline-event-tag tag-work">Work</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">5pm</div>
+        <div class="timeline-event">
+          <div class="timeline-event-name">Open — protect it</div>
+          <span class="timeline-event-tag tag-personal">Personal</span>
+        </div>
+      </div>
+      <div class="rhythm-insight">
+        <strong>Rhythm suggests:</strong> Use your 10:30 block for the gym — you've been deferring it 4 days. Moderate readiness, light afternoon load. Today is the day.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFTER QUOTE -->
+<section class="after-section reveal">
+  <blockquote class="after-quote">
+    "You're not just getting through days. You're starting to understand how you move through them."
+  </blockquote>
+  <p class="after-sub">From the strained Monday afternoons to the balanced streaks — you finally understand what it feels like when the numbers align.</p>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="section-label reveal">What's inside</div>
+  <h2 class="section-title reveal">Built for your whole life,<br><em>not just the parts<br>with deadlines.</em></h2>
+  <div class="features-grid reveal">
+    <div class="feature">
+      <div class="feature-icon">◐</div>
+      <h3>Recovery-aware scheduling</h3>
+      <p>Your Oura readiness score isn't just a number to log — it's a lens for your whole day. Rhythm reads it alongside your calendar load and adjusts accordingly.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◻</div>
+      <h3>Calendar timeline view</h3>
+      <p>See your events, open gaps, and readiness all in one place. The transformation moment made visible — your life and your body, sitting together.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">○</div>
+      <h3>Ambient lamp</h3>
+      <p>A warm pulsing light signals your state before you even open your phone. High readiness breathes slowly. Rest days dim to almost still. No colors, no alerts — just a signal.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◈</div>
+      <h3>Floating task alignment</h3>
+      <p>The things without deadlines live here — the gym, the call, the real meal. Rhythm surfaces them into real gaps based on your readiness and energy.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◇</div>
+      <h3>Daily alignment insight</h3>
+      <p>A short, personal message read aloud each morning. Not a productivity tip. An honest look at what today has room for — and permission to use it well.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">◑</div>
+      <h3>Weekly pattern view</h3>
+      <p>See your strained Monday afternoons and your balanced streaks. Understand how you move through weeks, not just days — and start shaping them intentionally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-label reveal">Pricing</div>
+  <h2 class="section-title reveal">Simple, honest,<br><em>built to last.</em></h2>
+  <div class="pricing-grid reveal">
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0</div>
+      <div class="plan-cadence">forever</div>
+      <ul class="plan-features">
+        <li><span class="check">✓</span> 7-day readiness history</li>
+        <li><span class="check">✓</span> Calendar sync</li>
+        <li><span class="check">✓</span> Daily alignment insight</li>
+        <li><span class="check">✓</span> Floating task list</li>
+        <li><span class="check">✓</span> Basic timeline view</li>
+      </ul>
+    </div>
+    <div class="plan pro">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">$8</div>
+      <div class="plan-cadence">per month · or $60/year</div>
+      <ul class="plan-features">
+        <li><span class="check">✓</span> Full readiness history</li>
+        <li><span class="check">✓</span> Unlimited AI insights</li>
+        <li><span class="check">✓</span> Smart scheduling nudges</li>
+        <li><span class="check">✓</span> Weekly pattern reports</li>
+        <li><span class="check">✓</span> Ambient lamp integration</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Rhythm</div>
+    <div style="margin-top:4px">A <a href="#">Noted by Nani</a> product · notedbynani.com</div>
+  </div>
+  <div style="text-align:right">
+    <div>Built with care for people who care too much.</div>
+    <div style="margin-top:4px"><a href="#">Privacy</a> · <a href="#">Contact</a></div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
