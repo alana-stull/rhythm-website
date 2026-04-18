@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rhythm, Make every day manageable, not perfect.</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23FDFCFA'/><text x='16' y='24' font-family='Georgia,serif' font-size='23' font-weight='bold' fill='%23C17E3A' text-anchor='middle'>r</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -41,6 +42,11 @@
     font-family: 'Tiempos Headline';
     src: url('tiempos-headline/TestTiemposHeadline-Semibold-BF66457a509040b.otf') format('opentype');
     font-weight: 600; font-style: normal;
+  }
+  @font-face {
+    font-family: 'Tiempos Headline';
+    src: url('tiempos-headline/TestTiemposHeadline-Bold-BF66457a5113d17.otf') format('opentype');
+    font-weight: 700; font-style: normal;
   }
   @font-face {
     font-family: 'Tiempos Headline';
@@ -84,8 +90,9 @@
   .nav-logo {
     font-family: 'Tiempos Headline', serif;
     font-size: 1.25rem;
-    color: var(--ink);
-    letter-spacing: 0.02em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.01em;
   }
   .nav-links { display: flex; gap: 36px; align-items: center; }
   .nav-links a {
@@ -754,7 +761,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo">Rhythm</div>
+  <div class="nav-logo">rhythm</div>
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="#features">Features</a>
@@ -1011,7 +1018,6 @@
 </footer>
 
 <script>
-  // TODO: fill these in from your Supabase project → Settings → API
   const SUPABASE_URL = 'https://pmsbperkkvifnowdrzgn.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtc2JwZXJra3ZpZm5vd2RyemduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjcxOTUsImV4cCI6MjA5MjEwMzE5NX0.3d_JgZXS1qlQpjW35fQ9pH1ar7nTCQj75hb7tFLreqA';
   const TABLE_NAME = 'early_access'; // create this table in Supabase with an "email" column
