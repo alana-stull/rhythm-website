@@ -1017,11 +1017,36 @@
   </div>
 </footer>
 
-<script>
-  const SUPABASE_URL = 'https://pmsbperkkvifnowdrzgn.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBtc2JwZXJra3ZpZm5vd2RyemduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjcxOTUsImV4cCI6MjA5MjEwMzE5NX0.3d_JgZXS1qlQpjW35fQ9pH1ar7nTCQj75hb7tFLreqA';
-  const TABLE_NAME = 'early_access'; // create this table in Supabase with an "email" column
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpyh-BujdV-Z4910Fi3VyKtHQh2JOMnDQ",
+    authDomain: "rhythm-e8461.firebaseapp.com",
+    projectId: "rhythm-e8461",
+    storageBucket: "rhythm-e8461.firebasestorage.app",
+    messagingSenderId: "841157747869",
+    appId: "1:841157747869:web:7e6d27c416c6558f7b2074",
+    measurementId: "G-0L3FZM64EL"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getFirestore(app);
+
+  // Attach to window so the standard script below can call it
+  window.saveEmailToFirebase = async function(email) {
+    // Using setDoc with the email as the ID prevents duplicates automatically
+    await setDoc(doc(db, "early_access", email), {
+      email: email,
+      createdAt: new Date()
+    });
+  };
+</script>
+
+<script>
   function openModal(e) {
     e.preventDefault();
     document.getElementById('modal').classList.add('open');
@@ -1053,25 +1078,7 @@
     errEl.style.display = 'none';
 
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE_NAME}`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ email })
-      });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        if (res.status === 409 || (data.code === '23505')) {
-          // duplicate email — treat as success
-        } else {
-          throw new Error(data.message || 'Something went wrong.');
-        }
-      }
+      await window.saveEmailToFirebase(email);
 
       document.getElementById('modal-form-view').style.display = 'none';
       document.getElementById('modal-success').style.display = 'block';
